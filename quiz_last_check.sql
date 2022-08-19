@@ -92,4 +92,4 @@ SELECT o.occurred_at, a.name, o.total, o.total_amt_usd
 FROM orders o
 JOIN accounts a
 ON o.account_id = a.id
-WHERE o.occurred_at DATEPART(2015);
+WHERE o.occurred_at between '2015-01-01' and '2016-01-01';
