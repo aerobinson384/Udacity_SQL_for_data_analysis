@@ -32,8 +32,6 @@ AND s.name LIKE '% K%'
 JOIN region r
 ON r.id = s.region_id
 AND r.name = 'Midwest'
-JOIN orders o
-ON o.account_id = a.id
 ORDER BY a.name;
 
 /*Provide the name for each region for every order, as well as the account name and the unit price they paid (total_amt_usd/total) for the order. However, you should only provide the results if the standard order quantity exceeds 100. Your final table should have 3 columns: region name, account name, and unit price. In order to avoid a division by zero error, adding .01 to the denominator here is helpful total_amt_usd/(total+0.01).*/
@@ -47,7 +45,7 @@ ON r.id = s.region_id
 AND r.name = 'Midwest'
 JOIN orders o
 ON o.account_id = a.id
-AND standard_qty > 100
+AND o.standard_qty > 100
 ORDER BY a.name;
 
 /*Provide the name for each region for every order, as well as the account name and the unit price they paid (total_amt_usd/total) for the order. However, you should only provide the results if the standard order quantity exceeds 100 and the poster order quantity exceeds 50. Your final table should have 3 columns: region name, account name, and unit price. Sort for the smallest unit price first. In order to avoid a division by zero error, adding .01 to the denominator here is helpful (total_amt_usd/(total+0.01).*/
@@ -60,8 +58,8 @@ JOIN region r
 ON r.id = s.region_id
 JOIN orders o
 ON o.account_id = a.id
-AND standard_qty > 100
-AND poster_qty > 50
+AND o.standard_qty > 100
+AND o.poster_qty > 50
 ORDER BY unitprice ASC;
 
 /*Provide the name for each region for every order, as well as the account name and the unit price they paid (total_amt_usd/total) for the order. However, you should only provide the results if the standard order quantity exceeds 100 and the poster order quantity exceeds 50. Your final table should have 3 columns: region name, account name, and unit price. Sort for the largest unit price first. In order to avoid a division by zero error, adding .01 to the denominator here is helpful (total_amt_usd/(total+0.01).*/
@@ -74,8 +72,8 @@ JOIN region r
 ON r.id = s.region_id
 JOIN orders o
 ON o.account_id = a.id
-AND standard_qty > 100
-AND poster_qty > 50
+AND o.standard_qty > 100
+AND o.poster_qty > 50
 ORDER BY unitprice DESC;
 
 /*What are the different channels used by account id 1001? Your final table should have only 2 columns: account name and the different channels. You can try SELECT DISTINCT to narrow down the results to only the unique values.*/
