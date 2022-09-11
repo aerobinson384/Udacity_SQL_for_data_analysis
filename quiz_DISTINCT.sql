@@ -22,3 +22,18 @@ SELECT DISTINCT id, name
 FROM accounts;
 
 /*Have any sales reps worked on more than one account?*/
+
+SELECT s.name sales_rep, a.name account
+FROM sales_reps s
+JOIN accounts a 
+ON s.id = a.sales_rep_id;
+
+SELECT s.id, s.name, COUNT(*) num_accounts
+FROM accounts a
+JOIN sales_reps s
+ON s.id = a.sales_rep_id
+GROUP BY s.id, s.name
+ORDER BY num_accounts;
+
+SELECT DISTINCT s.id, s.name
+FROM sales_reps s;
