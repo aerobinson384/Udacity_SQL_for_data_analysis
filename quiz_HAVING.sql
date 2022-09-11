@@ -88,3 +88,19 @@ ORDER BY COUNT(w.channel) DESC
 LIMIT 1;
 
 /*Which channel was most frequently used by most accounts?*/
+
+SELECT a.name, w.channel, COUNT(w.channel) num_times_used
+FROM accounts a
+JOIN web_events w
+ON a.id = w.account_id
+GROUP BY a.name, w.channel
+ORDER BY COUNT(w.channel) DESC
+LIMIT 10;
+
+SELECT a.id, a.name, w.channel, COUNT(*) use_of_channel
+FROM accounts a
+JOIN web_events w
+ON a.id = w.account_id
+GROUP BY a.id, a.name, w.channel
+ORDER BY use_of_channel DESC
+LIMIT 10;
